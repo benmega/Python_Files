@@ -1,11 +1,11 @@
 def usermakeskeletoncopy():
     from tkinter.filedialog import askdirectory
-    #fails if user input includes an apostrophe or possibly other special characters
     print('Please select a folder of which to make a skeleton copy.')
     origdir = askdirectory()
     print('Please select a location to save this copy.')
     skeletondir = askdirectory()
     inputname = input('And what would you like it to be named?')
+        #This fails if user input impossible folder name
     skeletonname = inputname.strip()
     try:
         makefolderskeletoncopy(origdir, skeletondir, skeletonname)
@@ -17,7 +17,6 @@ def usermakeskeletoncopy():
 def makefolderskeletoncopy(origdir, skeletondir, skeletonname):
     import os
     from html import escape
-    #dir2 = origdir.replace('\\','\\\\')
     dir2 = escape(origdir)
     os.chdir(dir2)
     subfolders = next(os.walk('.'))[1]
